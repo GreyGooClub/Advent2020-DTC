@@ -2,14 +2,17 @@ CXX = g++
 CXXFLAGS = -g -Wall
 TARGET = aoc02
 
-run: $(TARGET)
-	cat input.txt | ./$(TARGET)
+$(TARGET).o: $(TARGET).cpp
+	$(CXX) $(CXXFLAGS) -o $(TARGET).o $(TARGET).cpp
 
-test: $(TARGET)
-	cat test.txt | ./$(TARGET)
+run: $(TARGET).o
+	cat input.txt | ./$(TARGET).o
 
-debug: $(TARGET)
-	cat input.txt | valgrind ./$(TARGET)
+test: $(TARGET).o
+	cat test.txt | ./$(TARGET).o
+
+debug: $(TARGET).o
+	cat input.txt | valgrind ./$(TARGET).o
 
 clean:
-	$(RM) $(TARGET)
+	$(RM) $(TARGET).o
