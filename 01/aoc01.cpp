@@ -22,7 +22,7 @@ int main() {
   // Double sum
   for (int i=0; i<N; i++){
     current_lower = expenses[i];
-    for (int j=N; j > i; j--){
+    for (int j=N-1; j > i; j--){
       current_upper = expenses[j];
       if ((current_upper + current_lower) == target_sum){
         std::cout << "Found double sum (then multiplied): " << (current_upper * current_lower) << std::endl;
@@ -34,7 +34,7 @@ int main() {
   int current_mid;
   for (int i=0; i < N; i++){
     current_lower = expenses[i];
-    for (int j=N; j > i; j--){
+    for (int j=N-1; j > i; j--){
       current_upper = expenses[j];
       for (int k=i; k < j; k++){
         current_mid = expenses[k];
