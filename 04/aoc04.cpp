@@ -4,7 +4,7 @@
 #include <algorithm>
 #include <regex>
 
-std::regex hcl_regex("#[0-9a-f]+");
+std::regex hcl_regex("#[0-9a-f]{6}");
 std::regex pid_regex("^[0-9]{9}$");
 std::regex ecl_regex("^(amb|blu|brn|gry|grn|hzl|oth)$");
 
