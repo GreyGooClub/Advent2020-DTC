@@ -34,7 +34,7 @@ const std::map<std::string, std::function<bool(std::string)>> requirements_dict 
   {"hcl", [](std::string field) -> bool {return std::regex_search(field, hcl_regex);}},
   {"byr", [](std::string field) -> bool {return validate_int_range(field, 1920, 2002);}},
   {"iyr", [](std::string field) -> bool {return validate_int_range(field, 2010, 2020);}},
-  {"hgt", &validate_height},
+  {"hgt", validate_height},
 };
 
 int main() {
@@ -72,7 +72,7 @@ int main() {
     std::cout << current_entry << std::endl;
 
     // iterate over requirements map and validate using registered validators
-    for (const auto &element : requirements_dict){
+    for (auto element : requirements_dict){
       std::string rfield = element.first;
       std::function<bool(std::string)> validator = element.second;
       std::size_t found_start = current_entry.find(rfield);
@@ -85,8 +85,8 @@ int main() {
 
         // Validate against registered validator
         if (validator(field_value)){
-            valid_entries_found_pt2++;
-            std::cout << rfield << ' ' << field_value << " VALID" <<std::endl;
+          valid_entries_found_pt2++;
+          std::cout << rfield << ' ' << field_value << " VALID" <<std::endl;
         } else{
           std::cout << rfield << ' ' << field_value << " INVALID" <<std::endl;
         }
