@@ -5,6 +5,7 @@
 #include <math.h>
 
 int tribonacci(int N){
+  // 0 1 1 2(=1+1+0) 4(=2+1+1) 7(=4+2+1)...
   if (N <= 1){
     return 0;
   } else if (N == 2){
@@ -53,7 +54,7 @@ int main() {
       ones_in_row++;
     } else if (diff == 3) {
       if (ones_in_row != 0){
-        int add = tribonacci(ones_in_row + 2);
+        int add = tribonacci(ones_in_row + 2); // + 2 for start and finish
         num_ways *= add;
         std::cout << ones_in_row << " " << add << " "
                   << num_ways << std::endl;
