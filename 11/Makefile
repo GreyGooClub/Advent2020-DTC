@@ -1,5 +1,5 @@
 CXX = g++
-CXXFLAGS = -g -Wall
+CXXFLAGS = -g -Wall -O3
 TARGET = aoc11
 
 $(TARGET).o: $(TARGET).cpp

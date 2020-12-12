@@ -20,7 +20,7 @@ std::vector<int> adjacency_col = {
   };
 
 std::string find_immediate_neighbours(int i, int j,
-                                      const std::vector<std::string>& seats) {
+                                      const std::vector<std::string> &seats) {
   const int Nrow = seats.size();
   const int Ncol = seats[0].size();
   std::string adjacent;
