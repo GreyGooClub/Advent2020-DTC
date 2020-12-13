@@ -88,7 +88,7 @@ int main() {
       ship_ew += wp_ew * curr_value;
       ship_ns += wp_ns * curr_value;
     } else if (cmds[i] == 'R'){
-      // Rotate counter clokwise
+      // Rotate counter clockwise
       auto rotated = rotate_with_ints(-1*curr_value, wp_ew, wp_ns);
       wp_ew = rotated.first;
       wp_ns = rotated.second;
