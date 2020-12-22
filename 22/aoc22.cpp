@@ -41,7 +41,7 @@ deck_hash hash_deck(deck deck_to_hash){
   // your number theory friends.
   deck_hash out = "";
   for (int card : deck_to_hash){
-    out += to_string(card);
+    out += to_string(card)+",";
   }
   return out;
 }
@@ -63,8 +63,9 @@ game_result play_part2(deck p1_deck, deck p2_deck) {
   while ((p1_deck.size() > 0) && (p2_deck.size() > 0)) {
     deck_hash p1_hash = hash_deck(p1_deck);
     deck_hash p2_hash = hash_deck(p2_deck);
-    if ((p1_hashes.count(p1_hash)) ||
-        (p2_hashes.count(p2_hash))){
+    bool in_p1_hash = p1_hashes.count(p1_hash);
+    bool in_p2_hash = p2_hashes.count(p2_hash);
+    if (in_p1_hash && in_p2_hash) {
       // P1 wins
       return {true, p1_deck};
     }
@@ -114,6 +115,7 @@ int main() {
 
   deck *curr_deck = &p1_deck_input;
 
+  // Read input
   for (string line; getline(cin, line);){
     if (line[0] == 'P'){
       continue;
@@ -125,7 +127,7 @@ int main() {
   }
 
   // Part 1
-  deck  winning_deck_pt1 = play_part1(p1_deck_input, p2_deck_input);
+  deck winning_deck_pt1 = play_part1(p1_deck_input, p2_deck_input);
   long part1_result = score(winning_deck_pt1);
   cout << "Part 1: " << part1_result << endl;
 
