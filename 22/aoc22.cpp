@@ -36,16 +36,6 @@ deck play_part1(deck p1_deck, deck p2_deck){
   return winning_deck;
 }
 
-deck_hash hash_deck(deck deck_to_hash){
-  // Super fancy hash function to show off to
-  // your number theory friends.
-  deck_hash out = "";
-  for (int card : deck_to_hash){
-    out += to_string(card)+",";
-  }
-  return out;
-}
-
 long score(deck deck_to_score){
   long result = 0;
   int N = deck_to_score.size();
@@ -55,22 +45,25 @@ long score(deck deck_to_score){
   return result;
 }
 
+deck_hash hash_deck(deck deck_to_hash) {
+  // Super fancy hash function to show off to
+  // your number theory friends.
+  return to_string(score(deck_to_hash));
+}
+
 typedef pair<bool, deck> game_result; // first=true -> P1 win.
 
 game_result play_part2(deck p1_deck, deck p2_deck) {
-  set<deck_hash> p1_hashes = {};
-  set<deck_hash> p2_hashes = {};
+
+  set<deck_hash> hashes = {};
   while ((p1_deck.size() > 0) && (p2_deck.size() > 0)) {
-    deck_hash p1_hash = hash_deck(p1_deck);
-    deck_hash p2_hash = hash_deck(p2_deck);
-    bool in_p1_hash = p1_hashes.count(p1_hash);
-    bool in_p2_hash = p2_hashes.count(p2_hash);
-    if (in_p1_hash && in_p2_hash) {
+    deck_hash hash = hash_deck(p1_deck)+","+hash_deck(p2_deck);
+    bool in_hash = hashes.count(hash);
+    if (in_hash) {
       // P1 wins
       return {true, p1_deck};
     }
-    p1_hashes.emplace(p1_hash);
-    p2_hashes.emplace(p2_hash);
+    hashes.emplace(hash);
 
     // Draw cards
     int p1_card = p1_deck[0];
